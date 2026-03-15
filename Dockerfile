@@ -31,7 +31,7 @@ ENV HOST=0.0.0.0
 ENV PORT=10001
 
 # ✅ ДОБАВЛЯЕМ ПРАВИЛЬНЫЙ UPSTREAM URL
-ENV UPSTREAM_URL=https://api.z.ai/v1/chat/completions
+ENV UPSTREAM_URL=https://api.z.ai/api/paas/v4/chat/completions
 
 # Запускаем в анонимном режиме без ключей
 CMD ["./ztoapi", "-host", "0.0.0.0", "-port", "10001", "-anonymous"]
