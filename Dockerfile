@@ -8,7 +8,9 @@ RUN apk add --no-cache git
 
 # Клонируем ВАШ ФОРК с исправленным кодом
 # ВАЖНО: замените polinat892-web на ваш логин, если нужно
-RUN git clone https://github.com/polinat892-web/ZtoApi.git .
+# Клонируем ВАШ ФОРК и переключаемся на main (убедитесь, что используете ваш)
+RUN git clone https://github.com/polinat892-web/ZtoApi.git . && \
+    git checkout main
 
 # Скачиваем зависимости
 RUN go mod download
