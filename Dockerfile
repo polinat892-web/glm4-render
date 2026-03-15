@@ -32,7 +32,7 @@ ENV PORT=10001
 
 # ✅ ДОБАВЛЯЕМ ПРАВИЛЬНЫЙ UPSTREAM URL
 ENV UPSTREAM_URL=https://api.z.ai/api/paas/v4/chat/completions
-ENV ZAI_TOKEN="80eae8679213455ab3814b7989b27f1b"
+ENV ZAI_TOKEN=80eae8679213455ab3814b7989b27f1b
 
 # Отключаем анонимный режим принудительно
 ENV ANON_TOKEN_ENABLED=false
