@@ -1,22 +1,32 @@
+# Используем Go 1.24 для сборки
 FROM golang:1.24-alpine AS builder
 
 WORKDIR /app
 
-# Клонируем репозиторий
+# Устанавливаем git (нужен для клонирования)
 RUN apk add --no-cache git
-RUN git clone https://github.com/libaxuan/ZtoApi.git .
+
+# Клонируем ВАШ ФОРК с исправленным кодом
+# ВАЖНО: замените polinat892-web на ваш логин, если нужно
+RUN git clone https://github.com/polinat892-web/ZtoApi.git .
+
+# Скачиваем зависимости
 RUN go mod download
+
+# Собираем приложение
 RUN go build -o ztoapi main.go
 
+# Финальный образ
 FROM alpine:latest
 
 WORKDIR /app
 
-# Копируем бинарный файл
+# Копируем собранное приложение
 COPY --from=builder /app/ztoapi .
 
-# Запускаем с параметрами, которые 100% включат анонимный режим
-# --anonymous - ключевой флаг
-# --token "" - пустой токен
-# --key "" - пустой ключ (это важно!)
-CMD ["./ztoapi", "-host", "0.0.0.0", "-port", "10001", "-anonymous", "-token", "", "-key", ""]
+# Явно указываем слушать все интерфейсы и порт 10001
+ENV HOST=0.0.0.0
+ENV PORT=10001
+
+# Запускаем в анонимном режиме без ключей
+CMD ["./ztoapi", "-host", "0.0.0.0", "-port", "10001", "-anonymous"]
