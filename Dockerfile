@@ -23,4 +23,4 @@ ENV UPSTREAM_URL=https://chat.z.ai/api/chat/completions
 ENV MODEL=GLM-4.7
 
 # Важно: запускаем с принудительным указанием хоста и порта
-CMD ["./ztoapi", "-host", "0.0.0.0", "-port", "10001", "-anonymous"]
+CMD ["./ztoapi", "-host", "0.0.0.0", "-port", "10001", "-anonymous", "-token", ""]
